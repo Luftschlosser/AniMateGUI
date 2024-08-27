@@ -2,7 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import UsbOffIcon from '@mui/icons-material/UsbOff';
 import UsbIcon from '@mui/icons-material/Usb';
+import { useTranslation } from 'react-i18next';
 const UsbDevice: FC = () => {
+  const { t } = useTranslation();
   const [connectedDevice, setConnectedDevice] = useState<USBDevice | null>(null);
 
   const handleConnect = (): void => {
@@ -20,7 +22,7 @@ const UsbDevice: FC = () => {
         </Button>
       ) : (
         <Button onClick={handleConnect} variant="contained" endIcon={<UsbOffIcon />} color="error">
-          Connect to device
+          {t('connectButton')}
         </Button>
       )}
     </>

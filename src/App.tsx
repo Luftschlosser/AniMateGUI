@@ -1,10 +1,10 @@
+import './i18n';
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import { ContextProviders } from './contexts/ContextProviders.tsx';
 import { Header } from './header/Header.tsx';
-import UsbDevice from './components/UsbDevice.tsx';
 
 function App() {
   const [count, setCount] = useState(0);
