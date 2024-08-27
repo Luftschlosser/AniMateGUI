@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import { ContextProviders } from './contexts/ContextProviders.tsx';
 import { Header } from './header/Header.tsx';
+import UsbDevice from './components/UsbDevice.tsx';
 
 function App() {
   const [count, setCount] = useState(0);
