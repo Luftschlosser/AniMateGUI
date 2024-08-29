@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
+import { menuSlotProps } from './Header.styles.ts';
 
 export const LanguageSelect: FC = () => {
   const { t, i18n } = useTranslation();
@@ -13,11 +14,10 @@ export const LanguageSelect: FC = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (newLanguage?: string): void => {
-    if (newLanguage) {
-      i18n.changeLanguage(newLanguage);
-    }
-    setAnchorEl(null);
+  const changeLanguage = (newLanguage: string): void => {
+    i18n.changeLanguage(newLanguage).then(() => {
+      setAnchorEl(null);
+    });
   };
 
   return (
@@ -38,40 +38,17 @@ export const LanguageSelect: FC = () => {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
-        onClose={handleClose}
-        slotProps={{
-          paper: {
-            elevation: 0,
-            sx: {
-              overflow: 'visible',
-              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-              mt: 1.5,
-              '& .MuiAvatar-root': {
-                width: 32,
-                height: 32,
-                ml: -0.5,
-                mr: 1,
-              },
-              '&::before': {
-                content: '""',
-                display: 'block',
-                position: 'absolute',
-                top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
-                bgcolor: 'background.paper',
-                transform: 'translateY(-50%) rotate(45deg)',
-                zIndex: 0,
-              },
-            },
-          },
-        }}
+        onClose={() => setAnchorEl(null)}
+        slotProps={menuSlotProps}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {languages.map((language) => (
-          <MenuItem selected={language === i18n.language} onClick={() => handleClose(language)}>
+          <MenuItem
+            key={language}
+            selected={language === i18n.language}
+            onClick={() => changeLanguage(language)}
+          >
             {t(`settings.${language}`)}
           </MenuItem>
         ))}
