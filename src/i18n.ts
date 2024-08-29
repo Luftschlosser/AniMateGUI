@@ -7,7 +7,7 @@ export const defaultNS = 'translation';
 
 i18next.use(initReactI18next).use(LanguageDetector).use(HttpApi).init({
   debug: true,
-  fallbackLng: 'de',
+  fallbackLng: 'en',
   defaultNS,
 });
 

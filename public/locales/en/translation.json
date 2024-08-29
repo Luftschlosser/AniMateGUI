@@ -1,3 +1,7 @@
 {
+  "settings": {
+    "en": "English",
+    "de": "Deutsch"
+  },
   "connectButton": "Connect to device"
 }

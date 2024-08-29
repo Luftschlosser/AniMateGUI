@@ -1,4 +1,8 @@
 interface Resources {
+  settings: {
+    en: string;
+    de: string;
+  };
   translation: {
     connectButton: string;
   };

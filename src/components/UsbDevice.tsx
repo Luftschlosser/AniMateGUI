@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from '@mui/material';
 import UsbOffIcon from '@mui/icons-material/UsbOff';
 import UsbIcon from '@mui/icons-material/Usb';
