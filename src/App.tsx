@@ -2,6 +2,7 @@ import './i18n';
 import { Header } from './header/Header.tsx';
 import { HEADER_HEIGHT } from './Constants.ts';
 import { useTheme } from '@mui/material';
+import Builder from './builder/Builder.tsx';
 
 function App() {
   const theme = useTheme();
@@ -23,7 +24,9 @@ function App() {
           width: '100%',
           backgroundColor: theme.palette.background.default,
         }}
-      ></div>
+      >
+        <Builder />
+      </div>
     </div>
   );
 }
