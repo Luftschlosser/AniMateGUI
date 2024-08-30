@@ -17,7 +17,7 @@ const BuildingBlock = forwardRef<HTMLDivElement, BuildingBlockInterface>(
     return (
       <div
         data-grid={{ x: placement.x, y: placement.y, w: placement.w, h: placement.h }}
-        style={{ ...style, backgroundColor: 'red' }}
+        style={{ ...style }}
         key={key}
         className={className}
         ref={ref}
@@ -25,7 +25,7 @@ const BuildingBlock = forwardRef<HTMLDivElement, BuildingBlockInterface>(
         onMouseUp={onMouseUp}
         onTouchEnd={onTouchEnd}
       >
-        {key}
+        {children}
       </div>
     );
   },

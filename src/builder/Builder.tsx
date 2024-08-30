@@ -1,23 +1,29 @@
 import React, { FC } from 'react';
-import GridLayout from 'react-grid-layout';
-import BuildingBlock from './BuildingBlock.tsx';
-
+import GridLayout, { WidthProvider } from 'react-grid-layout';
+import '../../node_modules/react-grid-layout/css/styles.css';
+import '../../node_modules/react-resizable/css/styles.css';
+import { BuilderWrapper, GridItem } from './Builder.style.ts';
+import './test.css';
 const Builder: FC = () => {
+  const ResponsiveGridLayout = WidthProvider(GridLayout);
   return (
-    <GridLayout
-      className="layout"
-      cols={12}
-      rowHeight={30}
-      width={1200}
-      style={{ backgroundColor: 'green' }}
-    >
-      <div key="d" data-grid={{ x: 4, y: 0, w: 1, h: 2 }}>
-        c
-      </div>
-      <BuildingBlock key={'a'} placement={{ x: 0, y: 0, w: 1, h: 1 }} />
-      <BuildingBlock key={'b'} placement={{ x: 2, y: 2, w: 1, h: 1 }} />
-      <BuildingBlock key={'c'} placement={{ x: 4, y: 4, w: 1, h: 1 }} />
-    </GridLayout>
+    <BuilderWrapper>
+      <ResponsiveGridLayout
+        className="layout"
+        cols={15}
+        rowHeight={30}
+        preventCollision
+        verticalCompact={false}
+        resizeHandles={['w', 'e']}
+        containerPadding={[0, 0]}
+        margin={[0, 10]}
+        isBounded
+      >
+        <GridItem key={'a'} placement={{ x: 0, y: 0, w: 1, h: 1 }} />
+        <GridItem key={'b'} placement={{ x: 0, y: 0, w: 1, h: 1 }} />
+        <GridItem key={'c'} placement={{ x: 0, y: 0, w: 1, h: 1 }} />
+      </ResponsiveGridLayout>
+    </BuilderWrapper>
   );
 };
 
