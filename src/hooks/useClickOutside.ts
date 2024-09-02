@@ -6,22 +6,21 @@ const useClickOutside = <T extends HTMLElement = HTMLElement>(
   conditionEl: T | null,
 ): void => {
   useEffect(() => {
-    if (!conditionEl) return; // Skip if conditionEl is not set
+    if (!conditionEl) {
+      return;
+    }
 
     const listener = (event: MouseEvent | TouchEvent): void => {
       const target = event.target as Node;
 
       // Check if the click is inside any of the refs' elements
       const contained = refs.some((ref) => ref.current?.contains(target));
-      const test = [...conditionEl.childNodes].some((el) => (el as Node).isEqualNode(target));
-      [...conditionEl.childNodes].forEach((e) => console.log('CHILD', e));
-      console.log('target:', target);
-      console.log('conditionEl:', conditionEl);
-      // console.log('conditionEl:', conditionEl);
-      // console.log('Clicked Element:', test);
+      const containedInChildElement = [...conditionEl.childNodes].some((el) =>
+        (el as Node).isEqualNode(target),
+      );
 
       // Do nothing if clicking inside any refs or conditionEl (the button or its children)
-      if (contained || conditionEl.contains(target) || test) {
+      if (contained || conditionEl.contains(target) || containedInChildElement) {
         return;
       }
 
