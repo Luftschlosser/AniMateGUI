@@ -14,4 +14,10 @@ export const BuilderWrapper = styled(Box)(({ theme }) => ({
 export const GridItem = styled(BuildingBlock)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   border: `1px solid ${theme.palette.background.paper}`,
+  '& .react-resizable-handle': {
+    '&::after': {
+      borderRight: `2px solid ${theme.palette.text.primary}`,
+      borderBottom: `2px solid ${theme.palette.text.primary}`,
+    },
+  },
 }));
