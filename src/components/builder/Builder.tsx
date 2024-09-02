@@ -1,14 +1,13 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import GridLayout, { WidthProvider } from 'react-grid-layout';
-import '../../node_modules/react-grid-layout/css/styles.css';
-import '../../node_modules/react-resizable/css/styles.css';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 import { BuilderWrapper, GridItem } from './Builder.style.ts';
-import './test.css';
 import { styled } from '@mui/material';
 const Builder: FC = () => {
   const ResponsiveGridLayout = WidthProvider(GridLayout);
 
-  const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(({ theme }) => ({
+  const StyledResponsiveGridLayout = styled(ResponsiveGridLayout)(({}) => ({
     height: ' 100%',
     minHeight: '100%',
   }));

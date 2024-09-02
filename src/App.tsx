@@ -1,11 +1,19 @@
 import './i18n';
-import { Header } from './header/Header.tsx';
 import { HEADER_HEIGHT } from './Constants.ts';
 import { useTheme } from '@mui/material';
-import Builder from './builder/Builder.tsx';
+import Builder from './components/builder/Builder.tsx';
+import ConfigurationsDrawer from './components/drawer/ConfigurationsDrawer.tsx';
+import { FC, useEffect, useRef, useState } from 'react';
+import Header from './header/Header.tsx';
 
-function App() {
+const App: FC = () => {
   const theme = useTheme();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const [menuButton, setMenuButton] = useState<HTMLButtonElement | null>(null); // Create state for the button ref
+
+  useEffect(() => {
+    setMenuButton(menuButtonRef.current);
+  }, [menuButtonRef]);
 
   return (
     <div
@@ -17,7 +25,8 @@ function App() {
         width: '100%',
       }}
     >
-      <Header />
+      <Header ref={menuButtonRef} />
+      <ConfigurationsDrawer menuButton={menuButton} />
       <div
         style={{
           height: `calc(100% - ${HEADER_HEIGHT}px)`,
@@ -29,6 +38,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

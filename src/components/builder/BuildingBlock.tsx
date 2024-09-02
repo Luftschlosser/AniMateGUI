@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 export interface BuildingBlockPlacement {
   x: number;

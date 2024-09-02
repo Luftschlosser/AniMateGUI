@@ -1,12 +1,16 @@
-import React, { FC } from 'react';
-import { AppBar, Box, Toolbar, useTheme } from '@mui/material';
+import { forwardRef } from 'react';
+import { AppBar, Box, IconButton, Toolbar, useTheme } from '@mui/material';
 import UsbDevice from '../components/UsbDevice.tsx';
 import { LanguageSelect } from './LanguageSelect.tsx';
 import { ThemeSwitch } from './ThemeSwitch.tsx';
 import { HEADER_HEIGHT } from '../Constants.ts';
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { useConfigurationDrawerState } from '../contexts/ConfigurationDrawerContext.tsx';
 
-export const Header: FC = () => {
+const Header = forwardRef<HTMLButtonElement>((_props, ref) => {
   const theme = useTheme();
+  const { open, setOpen } = useConfigurationDrawerState();
 
   return (
     <Box>
@@ -16,6 +20,11 @@ export const Header: FC = () => {
       >
         <Toolbar>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <IconButton onClick={() => setOpen((prevState) => !prevState)} ref={ref}>
+                {open ? <MenuOpenIcon /> : <MenuIcon />}
+              </IconButton>
+            </div>
             <UsbDevice />
             <div>
               <ThemeSwitch />
@@ -26,4 +35,6 @@ export const Header: FC = () => {
       </AppBar>
     </Box>
   );
-};
+});
+
+export default Header;
