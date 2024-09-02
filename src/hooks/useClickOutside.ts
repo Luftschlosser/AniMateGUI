@@ -13,14 +13,15 @@ const useClickOutside = <T extends HTMLElement = HTMLElement>(
 
       // Check if the click is inside any of the refs' elements
       const contained = refs.some((ref) => ref.current?.contains(target));
-      const test = [...conditionEl.childNodes].some((el) => (el as Node) === target);
+      const test = [...conditionEl.childNodes].some((el) => (el as Node).isEqualNode(target));
       [...conditionEl.childNodes].forEach((e) => console.log('CHILD', e));
       console.log('target:', target);
+      console.log('conditionEl:', conditionEl);
       // console.log('conditionEl:', conditionEl);
       // console.log('Clicked Element:', test);
 
       // Do nothing if clicking inside any refs or conditionEl (the button or its children)
-      if (contained || conditionEl.contains(target)) {
+      if (contained || conditionEl.contains(target) || test) {
         return;
       }
 

@@ -3,16 +3,16 @@ import { HEADER_HEIGHT } from './Constants.ts';
 import { useTheme } from '@mui/material';
 import Builder from './components/builder/Builder.tsx';
 import ConfigurationsDrawer from './components/drawer/ConfigurationsDrawer.tsx';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, MutableRefObject, useEffect, useRef, useState } from 'react';
 import Header from './header/Header.tsx';
 
 const App: FC = () => {
   const theme = useTheme();
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [menuButton, setMenuButton] = useState<HTMLButtonElement | null>(null); // Create state for the button ref
+  const [menuButton, setMenuButton] = useState<MutableRefObject<HTMLButtonElement | null>>(null); // Create state for the button ref
 
   useEffect(() => {
-    setMenuButton(menuButtonRef.current);
+    setMenuButton(menuButtonRef);
   }, [menuButtonRef]);
 
   return (

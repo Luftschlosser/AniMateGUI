@@ -1,10 +1,12 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, MutableRefObject, useEffect, useRef } from 'react';
 import { MenuList } from '@mui/material';
 import { useConfigurationDrawerState } from '../../contexts/ConfigurationDrawerContext.tsx';
 import { DrawerWrapper } from './ConfigurationsDrawer.style.ts';
 import useClickOutside from '../../hooks/useClickOutside.ts';
 
-const ConfigurationsDrawer: FC<{ menuButton: HTMLButtonElement | null }> = ({ menuButton }) => {
+const ConfigurationsDrawer: FC<{ menuButton: MutableRefObject<HTMLButtonElement | null> }> = ({
+  menuButton,
+}) => {
   const { open, setOpen } = useConfigurationDrawerState();
   const menuRef = useRef(null);
 
@@ -18,7 +20,7 @@ const ConfigurationsDrawer: FC<{ menuButton: HTMLButtonElement | null }> = ({ me
     }
   };
 
-  useClickOutside([menuRef], handleClickOutside, menuButton);
+  useClickOutside([menuRef], handleClickOutside, menuButton.current);
 
   return (
     <DrawerWrapper menuOpen={open} ref={menuRef}>
