@@ -22,7 +22,7 @@ const Header = forwardRef<HTMLButtonElement>((_props, ref) => {
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <IconButton onClick={() => setOpen((prevState) => !prevState)} ref={ref}>
-                {open ? <MenuOpenIcon /> : <MenuIcon />}
+                <MenuIcon />
               </IconButton>
             </div>
             <UsbDevice />

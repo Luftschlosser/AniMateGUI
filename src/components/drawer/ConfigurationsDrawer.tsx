@@ -13,7 +13,6 @@ const ConfigurationsDrawer: FC<{ menuButton: HTMLButtonElement | null }> = ({ me
   }, [menuButton]);
 
   const handleClickOutside = (): void => {
-    console.log('handleClickOutside', menuButton);
     if (menuButton) {
       setOpen(false);
     }

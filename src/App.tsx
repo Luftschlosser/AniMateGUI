@@ -8,7 +8,7 @@ import Header from './header/Header.tsx';
 
 const App: FC = () => {
   const theme = useTheme();
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const [menuButton, setMenuButton] = useState<HTMLButtonElement | null>(null); // Create state for the button ref
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const App: FC = () => {
       }}
     >
       <Header ref={menuButtonRef} />
-      <ConfigurationsDrawer menuButton={menuButton} />
+      {menuButton && <ConfigurationsDrawer menuButton={menuButton} />}
       <div
         style={{
           height: `calc(100% - ${HEADER_HEIGHT}px)`,
