@@ -4,13 +4,14 @@ import { ContextProviders } from './contexts/ContextProviders.tsx';
 import App from './App.tsx';
 import './i18n';
 import './index.css';
+import Loading from './components/Loading.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <Suspense fallback="...is loading">
-    <StrictMode>
-      <ContextProviders>
+  <ContextProviders>
+    <Suspense fallback={<Loading />}>
+      <StrictMode>
         <App />
-      </ContextProviders>
-    </StrictMode>
-  </Suspense>,
+      </StrictMode>
+    </Suspense>
+  </ContextProviders>,
 );

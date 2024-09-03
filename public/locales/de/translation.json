@@ -3,5 +3,8 @@
     "en": "English",
     "de": "Deutsch"
   },
-  "connectButton": "Mit Gerät verbinden"
+  "connectButton": "Mit Gerät verbinden",
+  "newConfigButton": "Neue Konfiguration",
+  "save": "Speichern",
+  "burn": "Brennen"
 }

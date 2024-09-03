@@ -1,10 +1,28 @@
-import { Configuration } from '../models/Configuration.ts';
+import { Configuration, Configurations } from '../models/Configuration.ts';
+import { SAVE_LOCATION } from '../Constants.ts';
+import { defaultConfiguration } from '../contexts/ConfigurationsContext.tsx';
 
-const { app } = require('electron');
-
-export const saveConfiguration = (saveData: Configuration): void => {
-  // TODO: load all data, set data in the map by ID, save everything again
-  localStorage.setItem('saveData', JSON.stringify(saveData));
+export const saveConfiguration = (configurationToSave: Configuration): void => {
+  const saveData = fetchAllConfigurations();
+  saveData[configurationToSave.id] = configurationToSave;
+  localStorage.setItem(SAVE_LOCATION, JSON.stringify(saveData));
 };
 
-// export const fetchAllConfigurations = (): Configurations => {};
+export const fetchAllConfigurations = (): Configurations => {
+  const saveData = localStorage.getItem(SAVE_LOCATION);
+
+  if (!saveData) {
+    return { [defaultConfiguration.id]: defaultConfiguration };
+  }
+
+  try {
+    const saved = JSON.parse(saveData) as Configurations;
+    if (Object.values(saved).length > 0) {
+      return saved;
+    }
+    return { [defaultConfiguration.id]: defaultConfiguration };
+  } catch (e) {
+    console.error('Error parsing saved data: ', e);
+    return {};
+  }
+};

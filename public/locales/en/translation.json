@@ -3,5 +3,8 @@
     "en": "English",
     "de": "Deutsch"
   },
-  "connectButton": "Connect to device"
+  "connectButton": "Connect to device",
+  "newConfigButton": "New config",
+  "save": "Save",
+  "burn": "Burn"
 }

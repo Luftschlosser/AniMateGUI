@@ -1,12 +1,14 @@
 import { forwardRef } from 'react';
 import { AppBar, Box, IconButton, Toolbar, useTheme } from '@mui/material';
-import UsbDevice from '../components/UsbDevice.tsx';
+import UsbDevice from '../UsbDevice.tsx';
 import { LanguageSelect } from './LanguageSelect.tsx';
 import { ThemeSwitch } from './ThemeSwitch.tsx';
-import { HEADER_HEIGHT } from '../Constants.ts';
+import { HEADER_HEIGHT } from '../../Constants.ts';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { useConfigurationDrawerState } from '../contexts/ConfigurationDrawerContext.tsx';
+import { useConfigurationDrawerState } from '../../contexts/ConfigurationDrawerContext.tsx';
+import ConfigurationNameInput from '../ConfigurationNameInput.tsx';
+import SaveAndBurn from '../SaveAndBurn.tsx';
 
 const Header = forwardRef<HTMLButtonElement>((_props, ref) => {
   const theme = useTheme();
@@ -28,6 +30,8 @@ const Header = forwardRef<HTMLButtonElement>((_props, ref) => {
                   <MenuIcon style={{ pointerEvents: 'none' }} />
                 )}
               </IconButton>
+              <ConfigurationNameInput />
+              <SaveAndBurn />
             </div>
             <UsbDevice />
             <div>

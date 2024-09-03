@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '@mui/material';
 import UsbOffIcon from '@mui/icons-material/UsbOff';
 import UsbIcon from '@mui/icons-material/Usb';
@@ -11,7 +11,6 @@ const UsbDevice: FC = () => {
   const handleConnect = (): void => {
     navigator.usb.requestDevice({ filters: [] }).then((selectedDevice) => {
       setConnectedDevice(selectedDevice);
-      console.log('SELECTED', selectedDevice);
     });
   };
 
